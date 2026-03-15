@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Interaktif - Cimaragas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    
+    <style>
+        /* Override specific to this full-screen map page */
+        body {
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling, map handles it */
+        }
+        
+        .map-wrapper {
+            flex-grow: 1;
+            width: 100%;
+            height: calc(100vh - 72px); /* 72px is approx navbar height */
+        }
+        
+        iframe.map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="container" style="max-width: 100%; padding: 0 2rem;"> <!-- Wider container for map page -->
+            <a href="index.html" class="navbar-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                WebGIS Cimaragas
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Beranda</a></li>
+                <li><a href="map-page.html" class="nav-link active">Peta Wilayah</a></li>
+                <li><a href="data-stats.html" class="nav-link">Statistik</a></li>
+                <li><a href="facilities.html" class="nav-link">Fasilitas Umum</a></li>
+                <li><a href="about.html" class="nav-link">Tentang Desa</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Fullscreen Map Embedded -->
+    <div class="map-wrapper">
+        <iframe id="mapFrame" src="map.html" class="map-frame" title="Peta Interaktif WebGIS"></iframe>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('mobileToggle');
+            const menu = document.getElementById('navMenu');
+            
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+
+            // Read URL parameters and pass them to the embedded iframe
+            if (window.location.search) {
+                const mapFrame = document.getElementById('mapFrame');
+                mapFrame.src = 'map.html' + window.location.search;
+            }
+        });
+    </script>
+</body>
+</html>

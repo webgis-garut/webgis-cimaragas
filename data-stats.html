@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & Statistik Cimaragas</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/public.css">
+    
+    <style>
+        .page-header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .chart-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            margin-top: 1rem;
+        }
+        
+        .grid-half {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-half { grid-template-columns: 1fr; }
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            font-weight: 600;
+            background-color: var(--bg-subtle);
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                WebGIS Cimaragas
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Beranda</a></li>
+                <li><a href="map-page.html" class="nav-link">Peta Wilayah</a></li>
+                <li><a href="data-stats.html" class="nav-link active">Statistik</a></li>
+                <li><a href="facilities.html" class="nav-link">Fasilitas Umum</a></li>
+                <li><a href="about.html" class="nav-link">Tentang Desa</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Statistik Tata Ruang</h1>
+            <p>Infografis, proporsi lahan, dan analisis visual pemetaan Desa Cimaragas berdasarkan data GIS.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="section section-light" style="flex-grow: 1;">
+        <div class="container">
+            
+            <!-- Charts Section -->
+            <div class="grid-half">
+                <div class="card">
+                    <h3 class="card-title">Proporsi Tata Guna Lahan</h3>
+                    <div class="chart-container">
+                        <canvas id="landUseChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Kepadatan Area Per Rukun Warga</h3>
+                    <div class="chart-container">
+                        <canvas id="rwChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="card">
+                <h3 class="card-title">Rekapitulasi Wilayah Administratif</h3>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Kawasan</th>
+                                <th>Jenis Lahan</th>
+                                <th>Status Pemetaan</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RW 01 hingga RW 10</td>
+                                <td>Pemukiman & Beragam</td>
+                                <td><span style="color: var(--primary); font-weight: 600;"><i class="fas fa-check-circle"></i> Tervalidasi</span></td>
+                                <td>Lingkungan tempat tinggal utama masyarakat</td>
+                            </tr>
+                            <tr>
+                                <td>Cipancur (Non-SLS)</td>
+                                <td>Batas Luar / Alam</td>
+                                <td><span style="color: var(--secondary); font-weight: 600;"><i class="fas fa-info-circle"></i> Terpetakan</span></td>
+                                <td>Berbatasan langsung dengan administrasi desa</td>
+                            </tr>
+                            <tr>
+                                <td>Sawah Lega</td>
+                                <td>Pertanian (Sawah)</td>
+                                <td><span style="color: var(--secondary); font-weight: 600;"><i class="fas fa-info-circle"></i> Terpetakan</span></td>
+                                <td>Lumbung pertanian dan ketahanan pangan desa</td>
+                            </tr>
+                            <tr>
+                                <td>Ladang Umum</td>
+                                <td>Perkebunan</td>
+                                <td><span style="color: var(--secondary); font-weight: 600;"><i class="fas fa-info-circle"></i> Terpetakan</span></td>
+                                <td>Area kering dan tegalan multifungsi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 0;">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-map-marked-alt"></i> WebGIS Cimaragas</h3>
+                    <p style="margin-top: 1rem; max-width: 300px;">
+                        Sistem Informasi Geografis untuk pelayanan publik dan transparansi tata ruang.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="map-page.html">Peta Interaktif</a></li>
+                        <li><a href="facilities.html">Fasilitas Desa</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pemerintah Desa Cimaragas. Ditenagai oleh QGIS & Leaflet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav Toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Charts
+        const ctxLandUse = document.getElementById('landUseChart').getContext('2d');
+        new Chart(ctxLandUse, {
+            type: 'doughnut',
+            data: {
+                labels: ['Persawahan', 'Ladang', 'Pemukiman', 'Lain-lain'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#166534', '#84cc16', '#eab308', '#94a3b8'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, cutout: '70%' }
+        });
+
+        const ctxRW = document.getElementById('rwChart').getContext('2d');
+        new Chart(ctxRW, {
+            type: 'bar',
+            data: {
+                labels: ['RW 01', 'RW 02', 'RW 03', 'RW 04', 'RW 05'],
+                datasets: [{
+                    label: 'Indeks Luasan (Hektar)',
+                    data: [65, 59, 80, 81, 56],
+                    backgroundColor: '#0ea5e9',
+                    borderRadius: 4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+        });
+    </script>
+</body>
+</html>

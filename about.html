@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Cimaragas - WebGIS</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/public.css">
+
+    <style>
+        .page-header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-wrap {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .content-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article-content {
+            font-size: 1.1rem;
+            color: var(--text-body);
+            line-height: 1.8;
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-top: -3rem;
+            /* Overlap header slightly */
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-dark);
+        }
+
+        .article-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            list-style-type: disc;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .side-widget {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .side-widget.highlight {
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+        }
+
+        .side-widget.highlight h3,
+        .side-widget.highlight p {
+            color: white;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-subtle);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                WebGIS Cimaragas
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Beranda</a></li>
+                <li><a href="map-page.html" class="nav-link">Peta Wilayah</a></li>
+                <li><a href="data-stats.html" class="nav-link">Statistik</a></li>
+                <li><a href="facilities.html" class="nav-link">Fasilitas Umum</a></li>
+                <li><a href="about.html" class="nav-link active">Tentang Desa</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header" style="padding-bottom: 6rem;">
+        <div class="container">
+            <h1>Profil Kewilayahan</h1>
+            <p>Mengenal lebih dekat Desa Cimaragas dan sistem informasi geografis pembangunannya.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="section section-light" style="padding-top: 0; flex-grow: 1;">
+        <div class="container content-wrap">
+
+            <div class="article-content">
+                <p>
+                    <strong>Desa Cimaragas</strong> merupakan salah satu wilayah berkembang di Kabupaten Garut, Jawa
+                    Barat.
+                    Karakteristik tata guna lahan di sini sangat beragam, memadukan kehidupan pemukiman warga yang erat
+                    dengan hamparan wilayah pertanian produktif, terutama di kawasan Sawah Lega.
+                </p>
+                <p>
+                    Dalam upaya meningkatkan transparansi, pelayanan publik, dan perencanaan pembangunan, Pemerintahan
+                    Desa
+                    menginisiasi pembuatan <strong>Sistem Informasi Geografis (WebGIS)</strong>. Platform ini merupakan
+                    jendela informasi tata ruang desa yang dapat diakses oleh seluruh lapisan masyarakat.
+                </p>
+
+                <h3>Ruang Lingkup Pemetaan</h3>
+                <p>Data spasial yang disajikan dalam platform ini mencakup inventarisasi mendalam mengenai:</p>
+                <ul>
+                    <li><strong>Batas Administrasi:</strong> Pembagian presisi untuk Rukun Warga (RW 01 - RW 10),
+                        kawasan Cipancur, dan Sawah Lega.</li>
+                    <li><strong>Tata Guna Lahan:</strong> Deliniasi akurat pemukiman padat, persawahan aktif, dan
+                        ladang.</li>
+                    <li><strong>Infrastruktur Jaringan:</strong> Sistem jalan utama yang menghubungkan antar blok
+                        wilayah.</li>
+                    <li><strong>Fasilitas Milik Bersama:</strong> Titik koordinat untuk fasilitas pendidikan (SD, TK,
+                        Madrasah), kesehatan (Puskesmas), pemerintahan (Kantor Desa), dan ibadah (Masjid, Mushola).</li>
+                </ul>
+
+                <h3 style="margin-top: 3rem;">Teknologi & Sumber Data</h3>
+                <p>
+                    Portal pemetaan ini dibangun menggunakan standar web terkini <em>(HTML5, CSS3, JS)</em> dipadukan
+                    dengan
+                    pustaka peta interaktif <strong>Leaflet.js</strong>.
+                </p>
+                <p>
+                    Seluruh integrasi dan proyeksi awal data geospasial diekspor secara efisien melalui perangkat lunak
+                    sumber terbuka pemetaan <strong>QGIS</strong>, memanfaatkan basemap dari Google dan kontributor
+                    OpenStreetMap.
+                </p>
+            </div>
+
+            <aside class="side-widgets">
+                <div class="side-widget">
+                    <h3 class="mb-4">Informasi Kontak Pusat</h3>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <strong style="display:block; color: var(--text-dark);">Kantor Desa Cimaragas</strong>
+                                <span style="color: var(--text-muted); font-size: 0.95rem;">Kabupaten Garut, Jawa
+                                    Barat</span>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <strong style="display:block; color: var(--text-dark);">Email Resmi</strong>
+                                <span style="color: var(--text-muted); font-size: 0.95rem;">lorem ipsum</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="side-widget highlight text-center">
+                    <i class="fas fa-question-circle mb-3" style="font-size: 3rem;"></i>
+                    <h3 class="mb-2">Pertanyaan Seputar Peta?</h3>
+                    <p style="margin-bottom: 1.5rem; opacity: 0.9;">Untuk pelaporan kesalahan batas wilayah atau
+                        penambahan data fasilitas umum.</p>
+                    <a href="#" class="btn-primary"
+                        style="background: white; color: var(--primary-dark); width: 100%; justify-content: center;">
+                        Hubungi Petugas GIS
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: auto;">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2024 Pemerintah Desa Cimaragas. Ditenagai oleh QGIS & Leaflet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobileToggle').addEventListener('click', function () {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
