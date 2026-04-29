@@ -280,14 +280,15 @@
 
     <!-- Load QGIS Exported Data Variables directly -->
     <!-- These files define variables like json_Masjid_17, json_KantorDesa_19, etc. -->
-    <script src="data/LapanganSepakBola_12.js"></script>
-    <script src="data/Puskesmas_13.js"></script>
-    <script src="data/TK_14.js"></script>
-    <script src="data/SekolahDasar_15.js"></script>
-    <script src="data/Madrasah_16.js"></script>
-    <script src="data/Masjid_17.js"></script>
-    <script src="data/Mushola_18.js"></script>
-    <script src="data/KantorDesa_19.js"></script>
+    <script src="data/LapanganSepakBola_13.js"></script>
+    <script src="data/Puskesmas_14.js"></script>
+    <script src="data/TK_15.js"></script>
+    <script src="data/SekolahDasar_16.js"></script>
+    <script src="data/Madrasah_17.js"></script>
+    <script src="data/Masjid_18.js"></script>
+    <script src="data/Mushola_19.js"></script>
+    <script src="data/KantorDesa_20.js"></script>
+    <script src="data/PasarMingguan_12.js"></script>
 
     <!-- Top Navigation -->
     <nav class="navbar">
@@ -306,7 +307,7 @@
                 <li><a href="map-page.html" class="nav-link">Peta Wilayah</a></li>
                 <li><a href="data-stats.html" class="nav-link">Statistik</a></li>
                 <li><a href="facilities.html" class="nav-link active">Fasilitas Umum</a></li>
-                <li><a href="about.html" class="nav-link">Tentang Desa</a></li>
+                <li><a href="https://cimaragas-pangatikan.id/" class="nav-link" target="_blank">Web Profil</a></li>
             </ul>
         </div>
     </nav>
@@ -430,14 +431,15 @@
 
         // Check if variables defined in QGIS export exist, then process them
         // Note: Using try/catch to gracefully handle if any layer is missing
-        try { if (typeof json_KantorDesa_19 !== 'undefined') processGeoJSON(json_KantorDesa_19, 'Pemerintahan', 'cat-gov', 'img-gov', 'fa-building', 'Pemerintahan'); } catch (e) { }
-        try { if (typeof json_SekolahDasar_15 !== 'undefined') processGeoJSON(json_SekolahDasar_15, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-school', 'Pendidikan Dasar'); } catch (e) { }
-        try { if (typeof json_TK_14 !== 'undefined') processGeoJSON(json_TK_14, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-graduation-cap', 'Kanak-Kanak'); } catch (e) { }
-        try { if (typeof json_Madrasah_16 !== 'undefined') processGeoJSON(json_Madrasah_16, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-book-open', 'Madrasah'); } catch (e) { }
-        try { if (typeof json_Puskesmas_13 !== 'undefined') processGeoJSON(json_Puskesmas_13, 'Kesehatan', 'cat-hlth', 'img-hlth', 'fa-hospital', 'Kesehatan'); } catch (e) { }
-        try { if (typeof json_Masjid_17 !== 'undefined') processGeoJSON(json_Masjid_17, 'Agama', 'cat-rel', 'img-rel', 'fa-mosque', 'Masjid'); } catch (e) { }
-        try { if (typeof json_Mushola_18 !== 'undefined') processGeoJSON(json_Mushola_18, 'Agama', 'cat-rel', 'img-rel', 'fa-place-of-worship', 'Mushola'); } catch (e) { }
-        try { if (typeof json_LapanganSepakBola_12 !== 'undefined') processGeoJSON(json_LapanganSepakBola_12, 'Umum', 'cat-pub', 'img-pub', 'fa-futbol', 'Fasilitas Umum'); } catch (e) { }
+        try { if (typeof json_KantorDesa_20 !== 'undefined') processGeoJSON(json_KantorDesa_20, 'Pemerintahan', 'cat-gov', 'img-gov', 'fa-building', 'Pemerintahan'); } catch (e) { }
+        try { if (typeof json_SekolahDasar_16 !== 'undefined') processGeoJSON(json_SekolahDasar_16, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-school', 'Pendidikan Dasar'); } catch (e) { }
+        try { if (typeof json_TK_15 !== 'undefined') processGeoJSON(json_TK_15, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-graduation-cap', 'Kanak-Kanak'); } catch (e) { }
+        try { if (typeof json_Madrasah_17 !== 'undefined') processGeoJSON(json_Madrasah_17, 'Pendidikan', 'cat-edu', 'img-edu', 'fa-book-open', 'Madrasah'); } catch (e) { }
+        try { if (typeof json_Puskesmas_14 !== 'undefined') processGeoJSON(json_Puskesmas_14, 'Kesehatan', 'cat-hlth', 'img-hlth', 'fa-hospital', 'Kesehatan'); } catch (e) { }
+        try { if (typeof json_Masjid_18 !== 'undefined') processGeoJSON(json_Masjid_18, 'Agama', 'cat-rel', 'img-rel', 'fa-mosque', 'Masjid'); } catch (e) { }
+        try { if (typeof json_Mushola_19 !== 'undefined') processGeoJSON(json_Mushola_19, 'Agama', 'cat-rel', 'img-rel', 'fa-place-of-worship', 'Mushola'); } catch (e) { }
+        try { if (typeof json_LapanganSepakBola_13 !== 'undefined') processGeoJSON(json_LapanganSepakBola_13, 'Umum', 'cat-pub', 'img-pub', 'fa-futbol', 'Fasilitas Umum'); } catch (e) { }
+        try { if (typeof json_PasarMingguan_12 !== 'undefined') processGeoJSON(json_PasarMingguan_12, 'Umum', 'cat-pub', 'img-pub', 'fa-store', 'Pasar / Ekonomi'); } catch (e) { }
 
         // Custom Sort: Group by Category logically
         allFacilities.sort((a, b) => a.name.localeCompare(b.name));
@@ -446,7 +448,7 @@
         const grid = document.getElementById('facilitiesGrid');
 
         function renderCards(facilities) {
-            grid.innerHTML = ''; // Clear existing
+            grid.innerHTML = ''; 
 
             if (facilities.length === 0) {
                 grid.innerHTML = `
@@ -460,15 +462,12 @@
             }
 
             facilities.forEach(facility => {
-                // Ensure valid coordinates for the Internal Map link
-                const mapLink = (facility.lat && facility.lng)
+const mapLink = (facility.lat && facility.lng)
                     ? `<a href="map-page.html?lat=${facility.lat}&lng=${facility.lng}&zoom=18" class="map-link">
                         <i class="fas fa-map-marked-alt"></i> Buka di Peta WebGIS
                        </a>`
                     : '<span style="color:var(--text-muted); font-size:0.85rem;">Koordinat tidak tersedia</span>';
-
-                // Create image block: Use real photo if available, fallback to beautiful icon block
-                const imgBlock = facility.gambar
+const imgBlock = facility.gambar
                     ? `<div class="facility-img" style="background-image: url('${facility.gambar}'); background-size: cover; background-position: center; border-bottom: 1px solid var(--border);"></div>`
                     : `<div class="facility-img ${facility.imgClass}">
                             <i class="fas ${facility.iconClass}"></i>

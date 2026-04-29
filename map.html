@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -21,19 +21,14 @@
             margin: 0;
             font-family: 'Inter', sans-serif;
         }
-        /* 1. Prevent Legend from opening on Hover (Force Click) */
-        /* Block Leaflet's native hover events from showing the list, hiding it unless it explicitly has our custom toggle class */
-        .leaflet-control-layers:not(.legend-force-open) .leaflet-control-layers-list {
+.leaflet-control-layers:not(.legend-force-open) .leaflet-control-layers-list {
             display: none !important;
         }
 
-        /* Only allow the list to show when we physically click the toggle button */
         .leaflet-control-layers.legend-force-open .leaflet-control-layers-list {
             display: block !important;
         }
-
-        /* 2. Modern Legend Design */
-        .leaflet-control-layers {
+.leaflet-control-layers {
             border: none !important;
             border-radius: 12px !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
@@ -45,23 +40,21 @@
         .leaflet-control-layers-toggle {
             width: 44px !important;
             height: 44px !important;
-            background-image: none !important; /* Remove the old Leaflet image */
-            display: flex !important; /* Center the new FontAwesome icon */
+            background-image: none !important;
+            display: flex !important;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: #3b82f6; /* Beautiful blue color */
+            color: #3b82f6;
             font-size: 20px;
             cursor: pointer !important;
         }
         
-        /* Ensure SVG passes the click upward and shows pointer */
         .leaflet-control-layers-toggle svg {
             cursor: pointer !important;
-            pointer-events: none; /* Let the click fall through to the <a> tag */
+            pointer-events: none;
         }
 
-        /* Make the whole collapsed container appear clickable */
         .leaflet-control-layers:not(.legend-force-open) {
             cursor: pointer !important;
         }
@@ -70,20 +63,17 @@
             cursor: pointer !important;
         }
 
-        /* Hide the native stack icon when the legend is explicitly open so it doesn't overlap the X */
         .leaflet-control-layers.legend-force-open .leaflet-control-layers-toggle {
             display: none !important;
         }
-
-        /* 3. Legend Close Button & Title */
-        .legend-title {
+.legend-title {
             position: absolute;
             top: 14px;
             left: 18px;
             font-size: 16px;
             font-weight: 700;
             color: #0f172a;
-            display: none; /* Hide when closed */
+            display: none;
             margin: 0;
         }
         
@@ -100,10 +90,9 @@
             color: #64748b;
             z-index: 1000;
             padding: 4px;
-            display: none; /* Hide when closed */
+            display: none;
         }
         
-        /* Only show when Legend is expanded */
         .leaflet-control-layers.legend-force-open .legend-close-btn {
             display: block;
         }
@@ -113,16 +102,16 @@
         }
 
         .leaflet-control-layers-list {
-            margin-top: 24px !important; /* Push the list and its scrollbar DOWN so the Close button has a dedicated empty header space */
-            max-height: 70vh !important; /* Allow it to be taller */
+            margin-top: 24px !important;
+            max-height: 70vh !important;
             max-width: 320px !important;
             overflow-y: auto;
-            padding: 15px 10px; /* Better internal breathing room */
+            padding: 15px 10px;
         }
         
         .leaflet-control-layers label {
-            font-size: 15px; /* Slightly larger text */
-            margin-bottom: 12px; /* More spacing between layers */
+            font-size: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -132,7 +121,7 @@
         }
 
         .leaflet-control-layers label img {
-            width: 24px; /* Slightly larger icons */
+            width: 24px;
             height: 24px;
             object-fit: contain;
         }
@@ -142,111 +131,17 @@
             border-top: 1px solid #cbd5e1 !important;
         }
         
-        /* Ensure the Tree plugin's internal expanders are also spacious */
         .leaflet-layerstree-header label {
             margin-bottom: 6px !important;
         }
 
-        /* 3. Modern Leaflet Popups (Beautiful Cards) */
-        .leaflet-popup-content-wrapper {
-            border-radius: 16px !important;
-            padding: 0 !important;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-            border: none !important;
-        }
-        
-        .leaflet-popup-content,
-        .leaflet-popup-content.media {
-            margin: 0 !important;
-            width: 340px !important; /* Force width, crushing qgis2web's auto width */
-            max-width: 340px !important;
-        }
-        
-        /* The ugly QGIS table styling override - Using flexbox to reorder rows! */
-        .leaflet-popup-content table, 
-        .leaflet-popup-content tbody {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .leaflet-popup-content tr {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .leaflet-popup-content th {
-            display: none !important; /* Hide the row headers entirely */
-        }
-        
-        .leaflet-popup-content td {
-            border: none !important;
-            padding: 3px 20px !important; /* Reduced vertical padding */
-            font-size: 14px;
-            color: #475569;
-            width: auto;
-        }
-        
-        /* Safely target the dynamically-tagged title row */
-        .leaflet-popup-content .popup-title-row td {
-            font-size: 19px !important;
-            font-weight: 700;
-            color: #0f172a;
-            padding-top: 18px !important;
-            padding-bottom: 2px !important;
-        }
-        
-        /* Specific padding for text-only popups to clear the X button */
-        .leaflet-popup-content table.popup-no-media-table .popup-title-row td {
-            padding-top: 28px !important;
-            padding-right: 36px !important;
-        }
-        
-        /* Style coordinates to look like small metadata */
-        .leaflet-popup-content .popup-coord-row td {
-            font-size: 12px !important;
-            color: #94a3b8 !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-
-        /* Remove padding from the image wrap cell so it touches the outer edges */
-        .leaflet-popup-content tr:has(img) td {
-            padding: 0 !important; 
-        }
-
-        /* The hero image at the top of the card */
-        .leaflet-popup-content td img {
-            width: 340px !important;
-            max-width: 340px !important;
-            height: 220px !important; /* Made image taller */
-            object-fit: cover !important;
-            border-radius: 16px 16px 0 0 !important; /* Match top corners to the card wrapper */
-            display: block;
-            margin: 0 !important;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        .leaflet-popup-content td img:hover {
-            opacity: 0.9;
-        }
-
-        /* 4. Fullscreen Image Lightbox */
+        /* Lightbox Container */
         .lightbox-overlay {
-            display: none;
             position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Reduced opacity */
+            display: none;
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -308,9 +203,7 @@
             line-height: 24px !important;
             text-align: center;
         }
-
-        /* 4. Map Control Button Tweaks */
-        .leaflet-bar {
+.leaflet-bar {
             border: none !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
         }
@@ -325,7 +218,6 @@
             background-color: white !important;
         }
         
-        /* Custom Home Button CSS */
         .leaflet-control-home {
             background-color: white;
             border-radius: 8px;
@@ -362,13 +254,11 @@
         function openLightbox(imgElement) {
             var lightbox = document.getElementById('imageLightbox');
             var lightboxImg = document.getElementById('lightboxImg');
-            // Duplicate the popup image source to the fullscreen modal
             lightboxImg.src = imgElement.src; 
             lightbox.classList.add('active');
         }
 
         function closeLightbox(event) {
-            // Close only if clicking the background overlay or the X button
             if(event.target.id === 'imageLightbox' || event.target.className === 'lightbox-close') {
                 document.getElementById('imageLightbox').classList.remove('active');
             }
@@ -393,14 +283,15 @@
         <script src="data/Pemukiman_9.js"></script>
         <script src="data/JalanDesa_10.js"></script>
         <script src="data/BatasRW_11.js"></script>
-        <script src="data/LapanganSepakBola_12.js"></script>
-        <script src="data/Puskesmas_13.js"></script>
-        <script src="data/TK_14.js"></script>
-        <script src="data/SekolahDasar_15.js"></script>
-        <script src="data/Madrasah_16.js"></script>
-        <script src="data/Masjid_17.js"></script>
-        <script src="data/Mushola_18.js"></script>
-        <script src="data/KantorDesa_19.js"></script>
+        <script src="data/PasarMingguan_12.js"></script>
+        <script src="data/LapanganSepakBola_13.js"></script>
+        <script src="data/Puskesmas_14.js"></script>
+        <script src="data/TK_15.js"></script>
+        <script src="data/SekolahDasar_16.js"></script>
+        <script src="data/Madrasah_17.js"></script>
+        <script src="data/Masjid_18.js"></script>
+        <script src="data/Mushola_19.js"></script>
+        <script src="data/KantorDesa_20.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -413,17 +304,17 @@
             } else {
               highlightLayer.setStyle({
                 fillColor: '#ffff00',
-                fillOpacity: 1
+                fillOpacity: 0.3
               });
             }
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-7.164367175728631,107.97890116318129],[-7.148023280720997,108.01358837617418]]);
+        }).fitBounds([[-7.175664880402163,107.96093256994831],[-7.134732010290139,108.04780562611994]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        // remove popup's row if "visible-with-data", and restructure layout
+        // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
          var tempDiv = document.createElement('div');
          tempDiv.innerHTML = content;
@@ -448,33 +339,6 @@
                  tbody.prepend(imgRow);
              }
          }
-         
-         // Tag rows intelligently instead of using brittle CSS nth-child
-         var allTh = tempDiv.querySelectorAll('th');
-         var hasTitle = false;
-         for (var j = 0; j < allTh.length; j++) {
-             var thText = allTh[j].textContent.trim();
-             // Tag title row ('Nama' or 'Lahan')
-             if (!hasTitle && (thText === 'Nama' || thText === 'Lahan')) {
-                 var titleRow = allTh[j].closest('tr');
-                 if (titleRow) {
-                     titleRow.classList.add('popup-title-row');
-                     hasTitle = true;
-                 }
-             }
-             // Tag coordinate rows
-             if (thText === 'Latitude' || thText === 'Longitude') {
-                 var coordRow = allTh[j].closest('tr');
-                 if (coordRow) coordRow.classList.add('popup-coord-row');
-             }
-         }
-         
-         // Mark the entire table if there is no image, so CSS can adjust padding
-         if (!imgTd) {
-             var table = tempDiv.querySelector('table');
-             if (table) table.classList.add('popup-no-media-table');
-         }
-         
          return tempDiv.innerHTML;
         }
         // modify popup if contains media
@@ -527,29 +391,6 @@
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
-
-        // 5. Custom Home Button Control
-        var HomeControl = L.Control.extend({
-            options: {
-                position: 'topleft' // Place it directly under the zoom controls
-            },
-            onAdd: function (map) {
-                var container = L.DomUtil.create('div', 'leaflet-control-home leaflet-bar leaflet-control');
-                container.innerHTML = '<i class="fas fa-home"></i>';
-                container.title = "Kembali ke Tampilan Desa";
-                
-                // Add click listener
-                container.onclick = function(e){
-                    e.stopPropagation(); // Prevent click-through to map
-                    // Original QGIS init bounds for the whole village
-                    map.flyToBounds([[-7.164367175728631,107.97890116318129],[-7.148023280720997,108.01358837617418]], {
-                        duration: 1.5
-                    });
-                };
-                return container;
-            }
-        });
-        map.addControl(new HomeControl());
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
@@ -731,7 +572,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.35,
                 fillColor: 'rgba(105,165,9,1.0)',
                 interactive: true,
             }
@@ -786,7 +627,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.35,
                 fillColor: 'rgba(155,223,0,1.0)',
                 interactive: true,
             }
@@ -841,7 +682,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.35,
                 fillColor: 'rgba(208,151,114,1.0)',
                 interactive: true,
             }
@@ -954,7 +795,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(137,237,103,0.8)',
                 interactive: true,
             }
@@ -969,7 +810,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(39,125,255,0.8)',
                 interactive: true,
             }
@@ -984,7 +825,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(228,183,114,0.8)',
                 interactive: true,
             }
@@ -999,7 +840,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(194,88,46,0.8)',
                 interactive: true,
             }
@@ -1014,7 +855,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(237,121,103,0.8)',
                 interactive: true,
             }
@@ -1029,7 +870,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(69,158,206,0.8)',
                 interactive: true,
             }
@@ -1044,7 +885,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(225,92,136,0.8)',
                 interactive: true,
             }
@@ -1059,7 +900,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(148,112,238,0.8)',
                 interactive: true,
             }
@@ -1074,7 +915,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(160,15,209,0.8)',
                 interactive: true,
             }
@@ -1089,7 +930,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(152,186,79,0.8)',
                 interactive: true,
             }
@@ -1104,7 +945,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(81,218,204,0.8)',
                 interactive: true,
             }
@@ -1119,7 +960,7 @@
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
-                fillOpacity: 1,
+                fillOpacity: 0.3,
                 fillColor: 'rgba(34,159,63,0.8)',
                 interactive: true,
             }
@@ -1140,7 +981,7 @@
         });
         bounds_group.addLayer(layer_BatasRW_11);
         map.addLayer(layer_BatasRW_11);
-        function pop_LapanganSepakBola_12(feature, layer) {
+        function pop_PasarMingguan_12(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1179,39 +1020,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_LapanganSepakBola_12_0() {
+        function style_PasarMingguan_12_0() {
             return {
-                pane: 'pane_LapanganSepakBola_12',
+                pane: 'pane_PasarMingguan_12',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/LapanganSepakBola_12.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/PasarMingguan_12.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_LapanganSepakBola_12');
-        map.getPane('pane_LapanganSepakBola_12').style.zIndex = 412;
-        map.getPane('pane_LapanganSepakBola_12').style['mix-blend-mode'] = 'normal';
-        var layer_LapanganSepakBola_12 = new L.geoJson(json_LapanganSepakBola_12, {
+        map.createPane('pane_PasarMingguan_12');
+        map.getPane('pane_PasarMingguan_12').style.zIndex = 412;
+        map.getPane('pane_PasarMingguan_12').style['mix-blend-mode'] = 'normal';
+        var layer_PasarMingguan_12 = new L.geoJson(json_PasarMingguan_12, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_LapanganSepakBola_12',
-            layerName: 'layer_LapanganSepakBola_12',
-            pane: 'pane_LapanganSepakBola_12',
-            onEachFeature: pop_LapanganSepakBola_12,
+            dataVar: 'json_PasarMingguan_12',
+            layerName: 'layer_PasarMingguan_12',
+            pane: 'pane_PasarMingguan_12',
+            onEachFeature: pop_PasarMingguan_12,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_LapanganSepakBola_12_0(feature));
+                return L.marker(latlng, style_PasarMingguan_12_0(feature));
             },
         });
-        bounds_group.addLayer(layer_LapanganSepakBola_12);
-        map.addLayer(layer_LapanganSepakBola_12);
-        function pop_Puskesmas_13(feature, layer) {
+        bounds_group.addLayer(layer_PasarMingguan_12);
+        map.addLayer(layer_PasarMingguan_12);
+        function pop_LapanganSepakBola_13(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1250,39 +1091,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Puskesmas_13_0() {
+        function style_LapanganSepakBola_13_0() {
             return {
-                pane: 'pane_Puskesmas_13',
+                pane: 'pane_LapanganSepakBola_13',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Puskesmas_13.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/LapanganSepakBola_13.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_Puskesmas_13');
-        map.getPane('pane_Puskesmas_13').style.zIndex = 413;
-        map.getPane('pane_Puskesmas_13').style['mix-blend-mode'] = 'normal';
-        var layer_Puskesmas_13 = new L.geoJson(json_Puskesmas_13, {
+        map.createPane('pane_LapanganSepakBola_13');
+        map.getPane('pane_LapanganSepakBola_13').style.zIndex = 413;
+        map.getPane('pane_LapanganSepakBola_13').style['mix-blend-mode'] = 'normal';
+        var layer_LapanganSepakBola_13 = new L.geoJson(json_LapanganSepakBola_13, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Puskesmas_13',
-            layerName: 'layer_Puskesmas_13',
-            pane: 'pane_Puskesmas_13',
-            onEachFeature: pop_Puskesmas_13,
+            dataVar: 'json_LapanganSepakBola_13',
+            layerName: 'layer_LapanganSepakBola_13',
+            pane: 'pane_LapanganSepakBola_13',
+            onEachFeature: pop_LapanganSepakBola_13,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Puskesmas_13_0(feature));
+                return L.marker(latlng, style_LapanganSepakBola_13_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Puskesmas_13);
-        map.addLayer(layer_Puskesmas_13);
-        function pop_TK_14(feature, layer) {
+        bounds_group.addLayer(layer_LapanganSepakBola_13);
+        map.addLayer(layer_LapanganSepakBola_13);
+        function pop_Puskesmas_14(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1321,39 +1162,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_TK_14_0() {
+        function style_Puskesmas_14_0() {
             return {
-                pane: 'pane_TK_14',
+                pane: 'pane_Puskesmas_14',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/TK_14.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/Puskesmas_14.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_TK_14');
-        map.getPane('pane_TK_14').style.zIndex = 414;
-        map.getPane('pane_TK_14').style['mix-blend-mode'] = 'normal';
-        var layer_TK_14 = new L.geoJson(json_TK_14, {
+        map.createPane('pane_Puskesmas_14');
+        map.getPane('pane_Puskesmas_14').style.zIndex = 414;
+        map.getPane('pane_Puskesmas_14').style['mix-blend-mode'] = 'normal';
+        var layer_Puskesmas_14 = new L.geoJson(json_Puskesmas_14, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_TK_14',
-            layerName: 'layer_TK_14',
-            pane: 'pane_TK_14',
-            onEachFeature: pop_TK_14,
+            dataVar: 'json_Puskesmas_14',
+            layerName: 'layer_Puskesmas_14',
+            pane: 'pane_Puskesmas_14',
+            onEachFeature: pop_Puskesmas_14,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_TK_14_0(feature));
+                return L.marker(latlng, style_Puskesmas_14_0(feature));
             },
         });
-        bounds_group.addLayer(layer_TK_14);
-        map.addLayer(layer_TK_14);
-        function pop_SekolahDasar_15(feature, layer) {
+        bounds_group.addLayer(layer_Puskesmas_14);
+        map.addLayer(layer_Puskesmas_14);
+        function pop_TK_15(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1392,39 +1233,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_SekolahDasar_15_0() {
+        function style_TK_15_0() {
             return {
-                pane: 'pane_SekolahDasar_15',
+                pane: 'pane_TK_15',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/SekolahDasar_15.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/TK_15.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_SekolahDasar_15');
-        map.getPane('pane_SekolahDasar_15').style.zIndex = 415;
-        map.getPane('pane_SekolahDasar_15').style['mix-blend-mode'] = 'normal';
-        var layer_SekolahDasar_15 = new L.geoJson(json_SekolahDasar_15, {
+        map.createPane('pane_TK_15');
+        map.getPane('pane_TK_15').style.zIndex = 415;
+        map.getPane('pane_TK_15').style['mix-blend-mode'] = 'normal';
+        var layer_TK_15 = new L.geoJson(json_TK_15, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SekolahDasar_15',
-            layerName: 'layer_SekolahDasar_15',
-            pane: 'pane_SekolahDasar_15',
-            onEachFeature: pop_SekolahDasar_15,
+            dataVar: 'json_TK_15',
+            layerName: 'layer_TK_15',
+            pane: 'pane_TK_15',
+            onEachFeature: pop_TK_15,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_SekolahDasar_15_0(feature));
+                return L.marker(latlng, style_TK_15_0(feature));
             },
         });
-        bounds_group.addLayer(layer_SekolahDasar_15);
-        map.addLayer(layer_SekolahDasar_15);
-        function pop_Madrasah_16(feature, layer) {
+        bounds_group.addLayer(layer_TK_15);
+        map.addLayer(layer_TK_15);
+        function pop_SekolahDasar_16(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1463,39 +1304,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Madrasah_16_0() {
+        function style_SekolahDasar_16_0() {
             return {
-                pane: 'pane_Madrasah_16',
+                pane: 'pane_SekolahDasar_16',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Madrasah_16.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/SekolahDasar_16.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_Madrasah_16');
-        map.getPane('pane_Madrasah_16').style.zIndex = 416;
-        map.getPane('pane_Madrasah_16').style['mix-blend-mode'] = 'normal';
-        var layer_Madrasah_16 = new L.geoJson(json_Madrasah_16, {
+        map.createPane('pane_SekolahDasar_16');
+        map.getPane('pane_SekolahDasar_16').style.zIndex = 416;
+        map.getPane('pane_SekolahDasar_16').style['mix-blend-mode'] = 'normal';
+        var layer_SekolahDasar_16 = new L.geoJson(json_SekolahDasar_16, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Madrasah_16',
-            layerName: 'layer_Madrasah_16',
-            pane: 'pane_Madrasah_16',
-            onEachFeature: pop_Madrasah_16,
+            dataVar: 'json_SekolahDasar_16',
+            layerName: 'layer_SekolahDasar_16',
+            pane: 'pane_SekolahDasar_16',
+            onEachFeature: pop_SekolahDasar_16,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Madrasah_16_0(feature));
+                return L.marker(latlng, style_SekolahDasar_16_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Madrasah_16);
-        map.addLayer(layer_Madrasah_16);
-        function pop_Masjid_17(feature, layer) {
+        bounds_group.addLayer(layer_SekolahDasar_16);
+        map.addLayer(layer_SekolahDasar_16);
+        function pop_Madrasah_17(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1534,39 +1375,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Masjid_17_0() {
+        function style_Madrasah_17_0() {
             return {
-                pane: 'pane_Masjid_17',
+                pane: 'pane_Madrasah_17',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Masjid_17.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/Madrasah_17.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_Masjid_17');
-        map.getPane('pane_Masjid_17').style.zIndex = 417;
-        map.getPane('pane_Masjid_17').style['mix-blend-mode'] = 'normal';
-        var layer_Masjid_17 = new L.geoJson(json_Masjid_17, {
+        map.createPane('pane_Madrasah_17');
+        map.getPane('pane_Madrasah_17').style.zIndex = 417;
+        map.getPane('pane_Madrasah_17').style['mix-blend-mode'] = 'normal';
+        var layer_Madrasah_17 = new L.geoJson(json_Madrasah_17, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Masjid_17',
-            layerName: 'layer_Masjid_17',
-            pane: 'pane_Masjid_17',
-            onEachFeature: pop_Masjid_17,
+            dataVar: 'json_Madrasah_17',
+            layerName: 'layer_Madrasah_17',
+            pane: 'pane_Madrasah_17',
+            onEachFeature: pop_Madrasah_17,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Masjid_17_0(feature));
+                return L.marker(latlng, style_Madrasah_17_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Masjid_17);
-        map.addLayer(layer_Masjid_17);
-        function pop_Mushola_18(feature, layer) {
+        bounds_group.addLayer(layer_Madrasah_17);
+        map.addLayer(layer_Madrasah_17);
+        function pop_Masjid_18(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1605,39 +1446,39 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Mushola_18_0() {
+        function style_Masjid_18_0() {
             return {
-                pane: 'pane_Mushola_18',
+                pane: 'pane_Masjid_18',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Mushola_18.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/Masjid_18.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_Mushola_18');
-        map.getPane('pane_Mushola_18').style.zIndex = 418;
-        map.getPane('pane_Mushola_18').style['mix-blend-mode'] = 'normal';
-        var layer_Mushola_18 = new L.geoJson(json_Mushola_18, {
+        map.createPane('pane_Masjid_18');
+        map.getPane('pane_Masjid_18').style.zIndex = 418;
+        map.getPane('pane_Masjid_18').style['mix-blend-mode'] = 'normal';
+        var layer_Masjid_18 = new L.geoJson(json_Masjid_18, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Mushola_18',
-            layerName: 'layer_Mushola_18',
-            pane: 'pane_Mushola_18',
-            onEachFeature: pop_Mushola_18,
+            dataVar: 'json_Masjid_18',
+            layerName: 'layer_Masjid_18',
+            pane: 'pane_Masjid_18',
+            onEachFeature: pop_Masjid_18,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_Mushola_18_0(feature));
+                return L.marker(latlng, style_Masjid_18_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Mushola_18);
-        map.addLayer(layer_Mushola_18);
-        function pop_KantorDesa_19(feature, layer) {
+        bounds_group.addLayer(layer_Masjid_18);
+        map.addLayer(layer_Masjid_18);
+        function pop_Mushola_19(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1676,48 +1517,120 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_KantorDesa_19_0() {
+        function style_Mushola_19_0() {
             return {
-                pane: 'pane_KantorDesa_19',
+                pane: 'pane_Mushola_19',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/KantorDesa_19.svg',
-            iconSize: [11.399999999999999, 11.399999999999999]
+            iconUrl: 'markers/Mushola_19.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_KantorDesa_19');
-        map.getPane('pane_KantorDesa_19').style.zIndex = 419;
-        map.getPane('pane_KantorDesa_19').style['mix-blend-mode'] = 'normal';
-        var layer_KantorDesa_19 = new L.geoJson(json_KantorDesa_19, {
+        map.createPane('pane_Mushola_19');
+        map.getPane('pane_Mushola_19').style.zIndex = 419;
+        map.getPane('pane_Mushola_19').style['mix-blend-mode'] = 'normal';
+        var layer_Mushola_19 = new L.geoJson(json_Mushola_19, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_KantorDesa_19',
-            layerName: 'layer_KantorDesa_19',
-            pane: 'pane_KantorDesa_19',
-            onEachFeature: pop_KantorDesa_19,
+            dataVar: 'json_Mushola_19',
+            layerName: 'layer_Mushola_19',
+            pane: 'pane_Mushola_19',
+            onEachFeature: pop_Mushola_19,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_KantorDesa_19_0(feature));
+                return L.marker(latlng, style_Mushola_19_0(feature));
             },
         });
-        bounds_group.addLayer(layer_KantorDesa_19);
-        map.addLayer(layer_KantorDesa_19);
+        bounds_group.addLayer(layer_Mushola_19);
+        map.addLayer(layer_Mushola_19);
+        function pop_KantorDesa_20(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Nama</th>\
+                        <td>' + (feature.properties['Nama'] !== null ? autolinker.link(String(feature.properties['Nama']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Alamat</th>\
+                        <td>' + (feature.properties['Alamat'] !== null ? autolinker.link(String(feature.properties['Alamat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Latitude</th>\
+                        <td>' + (feature.properties['Latitude'] !== null ? autolinker.link(String(feature.properties['Latitude']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitude</th>\
+                        <td>' + (feature.properties['Longitude'] !== null ? autolinker.link(String(feature.properties['Longitude']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Gambar'] !== null ? '<img src="images/' + String(feature.properties['Gambar']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_KantorDesa_20_0() {
+            return {
+                pane: 'pane_KantorDesa_20',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/KantorDesa_20.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
+        }),
+                interactive: true,
+            }
+        }
+        map.createPane('pane_KantorDesa_20');
+        map.getPane('pane_KantorDesa_20').style.zIndex = 420;
+        map.getPane('pane_KantorDesa_20').style['mix-blend-mode'] = 'normal';
+        var layer_KantorDesa_20 = new L.geoJson(json_KantorDesa_20, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_KantorDesa_20',
+            layerName: 'layer_KantorDesa_20',
+            pane: 'pane_KantorDesa_20',
+            onEachFeature: pop_KantorDesa_20,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_KantorDesa_20_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_KantorDesa_20);
+        map.addLayer(layer_KantorDesa_20);
         var overlaysTree = [
         {label: '<b>Fasilitas Umum</b>',  selectAllCheckbox: true, children: [
-            {label: '<img src="legend/KantorDesa_19.png" /> KantorDesa', layer: layer_KantorDesa_19},
-            {label: '<img src="legend/Mushola_18.png" /> Mushola', layer: layer_Mushola_18},
-            {label: '<img src="legend/Masjid_17.png" /> Masjid', layer: layer_Masjid_17},
-            {label: '<img src="legend/Madrasah_16.png" /> Madrasah', layer: layer_Madrasah_16},
-            {label: '<img src="legend/SekolahDasar_15.png" /> Sekolah Dasar', layer: layer_SekolahDasar_15},
-            {label: '<img src="legend/TK_14.png" /> TK', layer: layer_TK_14},
-            {label: '<img src="legend/Puskesmas_13.png" /> Puskesmas', layer: layer_Puskesmas_13},
-            {label: '<img src="legend/LapanganSepakBola_12.png" /> Lapangan Sepak Bola', layer: layer_LapanganSepakBola_12},]},
+            {label: '<img src="legend/KantorDesa_20.png" /> KantorDesa', layer: layer_KantorDesa_20},
+            {label: '<img src="legend/Mushola_19.png" /> Mushola', layer: layer_Mushola_19},
+            {label: '<img src="legend/Masjid_18.png" /> Masjid', layer: layer_Masjid_18},
+            {label: '<img src="legend/Madrasah_17.png" /> Madrasah', layer: layer_Madrasah_17},
+            {label: '<img src="legend/SekolahDasar_16.png" /> Sekolah Dasar', layer: layer_SekolahDasar_16},
+            {label: '<img src="legend/TK_15.png" /> TK', layer: layer_TK_15},
+            {label: '<img src="legend/Puskesmas_14.png" /> Puskesmas', layer: layer_Puskesmas_14},
+            {label: '<img src="legend/LapanganSepakBola_13.png" /> Lapangan Sepak Bola', layer: layer_LapanganSepakBola_13},
+            {label: '<img src="legend/PasarMingguan_12.png" /> Pasar Mingguan', layer: layer_PasarMingguan_12},]},
             {label: 'Batas RW<br /><table><tr><td style="text-align: center;"><img src="legend/BatasRW_11_CipancurNonSLS0.png" /></td><td>Cipancur (Non SLS)</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW011.png" /></td><td>RW 01</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW022.png" /></td><td>RW 02</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW033.png" /></td><td>RW 03</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW044.png" /></td><td>RW 04</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW055.png" /></td><td>RW 05</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW066.png" /></td><td>RW 06</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW077.png" /></td><td>RW 07</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW088.png" /></td><td>RW 08</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW099.png" /></td><td>RW 09</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_RW1010.png" /></td><td>RW 10</td></tr><tr><td style="text-align: center;"><img src="legend/BatasRW_11_SawahLegaNonSLS11.png" /></td><td>Sawah Lega (Non SLS)</td></tr></table>', layer: layer_BatasRW_11},
             {label: '<img src="legend/JalanDesa_10.png" /> Jalan Desa', layer: layer_JalanDesa_10},
         {label: '<b>Penggunaan Lahan</b>', collapsed: true, selectAllCheckbox: true, children: [
@@ -1726,59 +1639,38 @@
             {label: '<img src="legend/Sawah_7.png" /> Sawah', layer: layer_Sawah_7},]},
             {label: '<img src="legend/BatasDesaCimaragas_6.png" /> Batas Desa Cimaragas', layer: layer_BatasDesaCimaragas_6},
             {label: "Citra Satelit", layer: layer_CitraSatelit_5},
-        {label: '<b>Base Map</b>',  selectAllCheckbox: true, children: [
+        ]
+        
+        var baseTree = {label: '<b>Base Map</b>', children: [
             {label: "OSM Standard", layer: layer_OSMStandard_4},
             {label: "Google Satellite", layer: layer_GoogleSatellite_3},
             {label: "Google Terrain Hybrid", layer: layer_GoogleTerrainHybrid_2},
             {label: "Esri World Imagery", layer: layer_EsriWorldImagery_1},
-            {label: "Google Roads", layer: layer_GoogleRoads_0},]},]
-        var lay = L.control.layers.tree(null, overlaysTree,{
+            {label: "Google Roads", layer: layer_GoogleRoads_0},
+        ]};
+        
+        var lay = L.control.layers.tree(baseTree, overlaysTree,{
+            //namedToggle: true,
+            //selectorBack: false,
+            //closedSymbol: '&#8862; &#x1f5c0;',
+            //openedSymbol: '&#8863; &#x1f5c1;',
+            //collapseAll: 'Collapse all',
+            //expandAll: 'Expand all',
             collapsed: true,
         });
         lay.addTo(map);
-        // 🚨 CLEANEST FIX: CSS Display Override
-        // Instead of breaking Leaflet's internal event DOM, we simply let Leaflet do its thing, 
-        // but use CSS to FORCE the menu to always stay visually hidden unless it has our custom class (`legend-force-open`).
-        var legendContainer = lay.getContainer();
-        var toggleIcon = legendContainer.querySelector('.leaflet-control-layers-toggle');
-        
-        if (legendContainer && toggleIcon) {
-            // Unify: Insert a beautiful inline SVG layer icon inside the toggle button
-            // We use inline SVG because QGIS's bundled FontAwesome is subsetted and might lack specific icons.
-            toggleIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" width="22px" height="22px"><path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-16.09 5.14-24.62 5.14s-17.06-1.71-24.62-5.14L68.98 210.03 10.89 236.36c-16.55 7.51-16.55 32.53 0 40.04l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.12zm0 136l-58.09-26.33-161.64 73.27c-7.56 3.43-16.09 5.14-24.62 5.14s-17.06-1.71-24.62-5.14L68.98 346.03 10.89 372.36c-16.55 7.51-16.55 32.53 0 40.04l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.12z"/></svg>';
-            
-            // Create the explicit title once
-            var legendTitle = document.createElement('h3');
-            legendTitle.className = 'legend-title';
-            legendTitle.innerText = 'Layer Peta';
-            legendContainer.appendChild(legendTitle);
-            
-            // Create the explicit close button once
-            var closeBtn = document.createElement('i');
-            closeBtn.className = 'fas fa-times legend-close-btn';
-            legendContainer.appendChild(closeBtn); // Add it to the main container
-            
-            // Clicking the close button hides it
-            closeBtn.addEventListener('click', function(e) {
+var homeControl = L.control({position: 'topleft'});
+        homeControl.onAdd = function (map) {
+            var btn = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+            btn.innerHTML = '<a href="#" class="leaflet-control-home" title="Kembali ke Tampilan Awal"><i class="fas fa-home"></i></a>';
+            btn.onclick = function(e) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent opening again if container caught it
-                legendContainer.classList.remove('legend-force-open');
-            });
-
-            // When the container is physically clicked, open it (easier to hit than just the icon)
-            legendContainer.addEventListener('click', function(e) {
-                if (!legendContainer.classList.contains('legend-force-open')) {
-                    e.preventDefault();
-                    legendContainer.classList.add('legend-force-open');
-                }
-            });
-            
-            // If the user clicks anywhere else on the map visually, close the legend
-            map.on('click', function() {
-                legendContainer.classList.remove('legend-force-open');
-            });
-        }
-
+                map.fitBounds([[-7.175664880402163,107.96093256994831],[-7.134732010290139,108.04780562611994]]);
+            }
+            return btn;
+        };
+        homeControl.addTo(map);
+        
         setBounds();
         var i = 0;
         layer_BatasRW_11.eachLayer(function(layer) {
@@ -1798,119 +1690,83 @@
                 return this._bounds;
             }
         });
-        resetLabels([layer_BatasRW_11,layer_Masjid_17,layer_Mushola_18]);
+        resetLabels([layer_BatasRW_11,layer_Masjid_18,layer_Mushola_19]);
         map.on("zoomend", function(){
-            resetLabels([layer_BatasRW_11,layer_Masjid_17,layer_Mushola_18]);
+            resetLabels([layer_BatasRW_11,layer_Masjid_18,layer_Mushola_19]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_BatasRW_11,layer_Masjid_17,layer_Mushola_18]);
+            resetLabels([layer_BatasRW_11,layer_Masjid_18,layer_Mushola_19]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_BatasRW_11,layer_Masjid_17,layer_Mushola_18]);
+            resetLabels([layer_BatasRW_11,layer_Masjid_18,layer_Mushola_19]);
         });
-        
-        // 7. Custom Logic: Mutually Exclusive Layers
-        // Group 1: Base Maps (Only one active at a time)
-        var baseMapLayers = [
-            { layer: layer_OSMStandard_4, id: 'OSM Standard' },
-            { layer: layer_GoogleSatellite_3, id: 'Google Satellite' },
-            { layer: layer_GoogleTerrainHybrid_2, id: 'Google Terrain Hybrid' },
-            { layer: layer_EsriWorldImagery_1, id: 'Esri World Imagery' },
-            { layer: layer_GoogleRoads_0, id: 'Google Roads' }
-        ];
-        
-        // Group 2: Land Use vs Boundaries
-        var landUseLayers = [
-            { layer: layer_Pemukiman_9, id: 'Pemukiman' },
-            { layer: layer_Ladang_8, id: 'Ladang' },
-            { layer: layer_Sawah_7, id: 'Sawah' }
-        ];
-        var boundaryLayer = { layer: layer_BatasRW_11, id: 'Batas RW' };
-        
-        // Helper function to force-uncheck a layer from the Legend UI seamlessly
-        function uncheckLayerInUI(layerNameId) {
-            setTimeout(function() {
-                var labels = document.querySelectorAll('.leaflet-control-layers-list label');
-                labels.forEach(function(label) {
-                    if (label.innerText.includes(layerNameId)) {
-                        var checkbox = label.querySelector('input[type="checkbox"]');
-                        // If it's currently checked, SIMULATE a real user click to uncheck it.
-                        // This lets Leaflet's internal engine handle the map removal safely.
-                        if (checkbox && checkbox.checked) {
-                            checkbox.click();
-                        }
-                    }
+        </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var layersToggle = document.querySelector('.leaflet-control-layers-toggle');
+            var layersControl = document.querySelector('.leaflet-control-layers');
+            
+            if (layersToggle && layersControl) {
+                // Change the icon to a nice fontawesome layer icon
+                layersToggle.innerHTML = '<i class="fas fa-layer-group"></i>';
+                
+                // Add click event to toggle the expanded state manually
+                layersToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    layersControl.classList.add('legend-force-open');
                 });
-            }, 10); // Run immediately AFTER Leaflet finishes the current click cycle
-        }
 
-        map.on('overlayadd', function(e) {
-            var addedLayer = e.layer;
-            
-            // Rule A: mutually exclusive Base Maps
-            var addedBaseMap = baseMapLayers.find(b => b.layer === addedLayer);
-            if (addedBaseMap) {
-                baseMapLayers.forEach(function(baseMap) {
-                    if (baseMap.layer !== addedLayer && map.hasLayer(baseMap.layer)) {
-                        uncheckLayerInUI(baseMap.id); // Safely clicks off the old one
-                    }
-                });
-            }
-            
-            // Rule B: Land Use vs RW Boundaries
-            var addedLandUse = landUseLayers.find(l => l.layer === addedLayer);
-            if (addedLandUse) {
-                if (map.hasLayer(boundaryLayer.layer)) {
-                    uncheckLayerInUI(boundaryLayer.id);
+                // Inject a title and a close button inside the legend panel
+                var form = layersControl.querySelector('form.leaflet-control-layers-list');
+                if(form) {
+                    var title = document.createElement('h3');
+                    title.className = 'legend-title';
+                    title.innerText = 'Legenda Peta';
+                    
+                    var closeBtn = document.createElement('div');
+                    closeBtn.className = 'legend-close-btn';
+                    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    
+                    closeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        layersControl.classList.remove('legend-force-open');
+                    });
+                    
+                    form.parentElement.insertBefore(title, form);
+                    form.parentElement.insertBefore(closeBtn, form);
                 }
-            } else if (addedLayer === boundaryLayer.layer) {
-                landUseLayers.forEach(function(landUse) {
-                    if (map.hasLayer(landUse.layer)) {
-                        uncheckLayerInUI(landUse.id);
+
+                // Close legend when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!layersControl.contains(e.target) && !layersToggle.contains(e.target)) {
+                        layersControl.classList.remove('legend-force-open');
                     }
                 });
             }
-        });
-
-        // 8. Custom Logic: Read URL parameters to pan/zoom map on load
-        // This is used by the Facilities directory to link to specific locations on this map
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
             const lat = urlParams.get('lat');
             const lng = urlParams.get('lng');
-            const zoom = urlParams.get('zoom') || 18; // Default to close zoom if targeting an object
-
-            if (lat && lng) {
+            const zoom = urlParams.get('zoom');
+            
+            if (lat && lng && typeof map !== 'undefined') {
                 const targetLat = parseFloat(lat);
                 const targetLng = parseFloat(lng);
-                
-                // Leaflet function to fly to coordinates
-                map.flyTo([targetLat, targetLng], parseInt(zoom), {
-                    animate: true,
-                    duration: 1.5 // Seconds
-                });
-
-                // Wait for flyTo animation to mostly finish, then find and open the popup
-                setTimeout(() => {
-                    let popupOpened = false;
-                    map.eachLayer(function (layer) {
-                        // Check if layer is a marker and has getLatLng, and popup is not yet opened
-                        if (!popupOpened && layer.getLatLng) {
-                            const markerLatLng = layer.getLatLng();
-                            // Compare rounded coordinates to handle floating point imprecision
-                            if (Math.abs(markerLatLng.lat - targetLat) < 0.0001 && 
-                                Math.abs(markerLatLng.lng - targetLng) < 0.0001) {
-                                
-                                if (layer.openPopup) {
-                                    layer.openPopup();
-                                    popupOpened = true; // Stop searching once found
-                                }
+setTimeout(function() {
+                    map.setView([targetLat, targetLng], zoom ? parseInt(zoom) : 18);
+for (var id in map._layers) {
+                        var layer = map._layers[id];
+                        if (layer.getLatLng && layer.openPopup) {
+                            var mLatLng = layer.getLatLng();
+if (Math.abs(mLatLng.lat - targetLat) < 0.00001 && Math.abs(mLatLng.lng - targetLng) < 0.00001) {
+                                layer.openPopup();
+                                break;
                             }
                         }
-                    });
-                }, 1600); // Trigger slightly after the 1.5s flyTo animation completes
+                    }
+                }, 400); 
             }
         });
-        </script>        
+        </script>
     </body>
 </html>

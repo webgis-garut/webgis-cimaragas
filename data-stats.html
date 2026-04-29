@@ -19,14 +19,15 @@
     <script src="data/Ladang_8.js"></script>
     <script src="data/Pemukiman_9.js"></script>
     <script src="data/BatasRW_11.js"></script>
-    <script src="data/SekolahDasar_15.js"></script>
-    <script src="data/TK_14.js"></script>
-    <script src="data/Madrasah_16.js"></script>
-    <script src="data/Masjid_17.js"></script>
-    <script src="data/Mushola_18.js"></script>
-    <script src="data/KantorDesa_19.js"></script>
-    <script src="data/Puskesmas_13.js"></script>
-    <script src="data/LapanganSepakBola_12.js"></script>
+    <script src="data/SekolahDasar_16.js"></script>
+    <script src="data/TK_15.js"></script>
+    <script src="data/Madrasah_17.js"></script>
+    <script src="data/Masjid_18.js"></script>
+    <script src="data/Mushola_19.js"></script>
+    <script src="data/KantorDesa_20.js"></script>
+    <script src="data/Puskesmas_14.js"></script>
+    <script src="data/LapanganSepakBola_13.js"></script>
+    <script src="data/PasarMingguan_12.js"></script>
 
     <style>
         .page-header {
@@ -37,14 +38,14 @@
             text-align: center;
             position: relative;
             border-bottom: 4px solid var(--accent);
-            box-shadow: inset 0 -10px 20px -10px rgba(0,0,0,0.3);
+            box-shadow: inset 0 -10px 20px -10px rgba(0, 0, 0, 0.3);
         }
 
         .page-header h1 {
             color: white;
             font-size: 2.8rem;
             font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
@@ -54,7 +55,7 @@
             font-size: 1.15rem;
             max-width: 600px;
             margin: 0 auto;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             line-height: 1.6;
         }
 
@@ -118,7 +119,7 @@
                 <li><a href="map-page.html" class="nav-link">Peta Wilayah</a></li>
                 <li><a href="data-stats.html" class="nav-link active">Statistik</a></li>
                 <li><a href="facilities.html" class="nav-link">Fasilitas Umum</a></li>
-                <li><a href="about.html" class="nav-link">Tentang Desa</a></li>
+                <li><a href="https://cimaragas-pangatikan.id/" class="nav-link" target="_blank">Web Profil</a></li>
             </ul>
         </div>
     </nav>
@@ -273,8 +274,8 @@
         // ==========================================
         // 1. DINAMIS: MENGHITUNG POIN FASILITAS (COUNTS)
         // ==========================================
-        const countPendidikan = json_SekolahDasar_15.features.length + json_TK_14.features.length + json_Madrasah_16.features.length;
-        const countIbadah = json_Masjid_17.features.length + json_Mushola_18.features.length;
+        const countPendidikan = json_SekolahDasar_16.features.length + json_TK_15.features.length + json_Madrasah_17.features.length;
+        const countIbadah = json_Masjid_18.features.length + json_Mushola_19.features.length;
         const countBatas = json_BatasRW_11.features.length;
 
         document.getElementById('stat-pendidikan').innerText = countPendidikan;
